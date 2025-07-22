@@ -133,7 +133,9 @@ class AppointmentController extends Controller
             ->where('is_active', true)
             ->get();
             
-        $customers = Customer::where('establishment_id', $establishment->id)
+        $customers = Customer::whereHas('establishments', function ($query) use ($establishment) {
+                $query->where('establishment_id', $establishment->id);
+            })
             ->orderBy('name')
             ->get();
 
@@ -229,7 +231,9 @@ class AppointmentController extends Controller
             ->where('is_active', true)
             ->get();
             
-        $customers = Customer::where('establishment_id', $establishment->id)
+        $customers = Customer::whereHas('establishments', function ($query) use ($establishment) {
+                $query->where('establishment_id', $establishment->id);
+            })
             ->orderBy('name')
             ->get();
 
