@@ -20,7 +20,9 @@ class AppointmentPolicy
      */
     public function view(User $user, Appointment $appointment): bool
     {
-        return $user->role === 'establishment' && $user->id === $appointment->establishment_id;
+        return $user->role === 'establishment' && 
+               $user->establishment && 
+               $user->establishment->id === $appointment->establishment_id;
     }
 
     /**
@@ -36,7 +38,9 @@ class AppointmentPolicy
      */
     public function update(User $user, Appointment $appointment): bool
     {
-        return $user->role === 'establishment' && $user->id === $appointment->establishment_id;
+        return $user->role === 'establishment' && 
+               $user->establishment && 
+               $user->establishment->id === $appointment->establishment_id;
     }
 
     /**
@@ -44,6 +48,8 @@ class AppointmentPolicy
      */
     public function delete(User $user, Appointment $appointment): bool
     {
-        return $user->role === 'establishment' && $user->id === $appointment->establishment_id;
+        return $user->role === 'establishment' && 
+               $user->establishment && 
+               $user->establishment->id === $appointment->establishment_id;
     }
 }
