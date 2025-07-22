@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+
+# Sitemap
+Sitemap: https://horaly.com.br/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1

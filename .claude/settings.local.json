@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan make:model:*)",
+      "Bash(php artisan make:seeder:*)",
+      "Bash(php artisan migrate:fresh:*)",
+      "Bash(php artisan make:controller:*)",
+      "Bash(php artisan make:middleware:*)",
+      "Bash(php artisan make:request:*)",
+      "Bash(npm run dev:*)",
+      "Bash(php artisan route:list:*)",
+      "Bash(php artisan tinker:*)",
+      "Bash(rm:*)",
+      "Bash(ls:*)",
+      "Bash(pkill:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(mv:*)",
+      "Bash(php artisan make:migration:*)",
+      "Bash(php artisan:*)",
+      "Bash(npx shadcn:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install:*)",
+      "Bash(mysql:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run types:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run format:*)",
+      "Bash(npx tsc:*)",
+      "Bash(composer:*)",
+      "Bash(php:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  }
+}
