@@ -20,7 +20,8 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer): bool
     {
-        return $user->role === 'establishment' && $user->id === $customer->establishment_id;
+        return $user->role === 'establishment' && 
+               $customer->establishments()->where('establishment_id', $user->establishment->id)->exists();
     }
 
     /**
@@ -36,7 +37,8 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer): bool
     {
-        return $user->role === 'establishment' && $user->id === $customer->establishment_id;
+        return $user->role === 'establishment' && 
+               $customer->establishments()->where('establishment_id', $user->establishment->id)->exists();
     }
 
     /**
@@ -44,6 +46,7 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer): bool
     {
-        return $user->role === 'establishment' && $user->id === $customer->establishment_id;
+        return $user->role === 'establishment' && 
+               $customer->establishments()->where('establishment_id', $user->establishment->id)->exists();
     }
 }
