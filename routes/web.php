@@ -34,7 +34,7 @@ Route::get('/api/day-availability', [App\Http\Controllers\BookingController::cla
 Route::get('/api/booking/{slug}/customers/search', [App\Http\Controllers\BookingController::class, 'searchCustomer'])->name('booking.search-customer');
 Route::get('/api/booking/customers/search', [App\Http\Controllers\BookingController::class, 'searchCustomer'])->name('booking.search-customer-global');
 Route::post('/api/booking/validate-coupon', [App\Http\Controllers\BookingController::class, 'validateCoupon'])->name('booking.validate-coupon');
-Route::post('/api/appointments', [App\Http\Controllers\BookingController::class, 'createAppointment'])->name('booking.create-appointment');
+// Moved to api.php
 
 // WhatsApp Webhook (public route)
 Route::post('/webhooks/whatsapp', [App\Http\Controllers\WhatsAppController::class, 'webhook'])->name('whatsapp.webhook');
