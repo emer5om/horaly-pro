@@ -1,11 +1,2 @@
-[phases.setup]
-nixpkgs = ['nodejs', 'php82', 'composer']
-
-[phases.build]
-cmd = 'composer install --no-dev --optimize-autoloader && npm install && npm run build'
-
-[phases.start]
-cmd = 'php -S 0.0.0.0:80 -t public'
-
-[variables]
-PHP_VERSION = "8.2"
+[start]
+cmd = "php -S 0.0.0.0:80 -t public"
