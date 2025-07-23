@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('establishments', function (Blueprint $table) {
-            $table->string('earliest_booking_time')->nullable()->after('cancel_advance_hours');
-            $table->string('latest_booking_time')->nullable()->after('earliest_booking_time');
+            if (!Schema::hasColumn('establishments', 'earliest_booking_time')) {
+                $table->string('earliest_booking_time')->nullable()->after('cancel_advance_hours');
+            }
+            if (!Schema::hasColumn('establishments', 'latest_booking_time')) {
+                $table->string('latest_booking_time')->nullable()->after('earliest_booking_time');
+            }
         });
     }
 

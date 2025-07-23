@@ -12,14 +12,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('establishments', function (Blueprint $table) {
-            $table->string('booking_slug')->nullable()->unique();
-            $table->string('booking_primary_color')->default('#3B82F6');
-            $table->string('booking_secondary_color')->default('#1E40AF');
-            $table->string('booking_slogan')->nullable();
-            $table->string('booking_logo')->nullable();
-            $table->string('booking_banner')->nullable();
-            $table->string('booking_theme')->default('modern');
-            $table->json('required_fields')->nullable();
+            if (!Schema::hasColumn('establishments', 'booking_slug')) {
+                $table->string('booking_slug')->nullable()->unique();
+            }
+            if (!Schema::hasColumn('establishments', 'booking_primary_color')) {
+                $table->string('booking_primary_color')->default('#3B82F6');
+            }
+            if (!Schema::hasColumn('establishments', 'booking_secondary_color')) {
+                $table->string('booking_secondary_color')->default('#1E40AF');
+            }
+            if (!Schema::hasColumn('establishments', 'booking_slogan')) {
+                $table->string('booking_slogan')->nullable();
+            }
+            if (!Schema::hasColumn('establishments', 'booking_logo')) {
+                $table->string('booking_logo')->nullable();
+            }
+            if (!Schema::hasColumn('establishments', 'booking_banner')) {
+                $table->string('booking_banner')->nullable();
+            }
+            if (!Schema::hasColumn('establishments', 'booking_theme')) {
+                $table->string('booking_theme')->default('modern');
+            }
+            if (!Schema::hasColumn('establishments', 'required_fields')) {
+                $table->json('required_fields')->nullable();
+            }
         });
     }
 
