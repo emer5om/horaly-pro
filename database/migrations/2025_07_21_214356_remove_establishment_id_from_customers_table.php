@@ -15,8 +15,10 @@ return new class extends Migration
             // Primeiro migrar dados existentes para a tabela pivot
             $this->migrateExistingData();
             
-            // Remover apenas a coluna establishment_id (não há foreign key)
-            $table->dropColumn('establishment_id');
+            // Remover apenas a coluna establishment_id se ela existir
+            if (Schema::hasColumn('customers', 'establishment_id')) {
+                $table->dropColumn('establishment_id');
+            }
         });
     }
     
@@ -25,19 +27,22 @@ return new class extends Migration
      */
     private function migrateExistingData()
     {
-        // Buscar todos os customers que têm establishment_id
-        $customers = \DB::table('customers')
-            ->whereNotNull('establishment_id')
-            ->get();
-            
-        foreach ($customers as $customer) {
-            // Inserir na tabela pivot se não existir
-            \DB::table('customer_establishments')->insertOrIgnore([
-                'customer_id' => $customer->id,
-                'establishment_id' => $customer->establishment_id,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        // Verificar se a coluna establishment_id existe antes de tentar migrar
+        if (Schema::hasColumn('customers', 'establishment_id')) {
+            // Buscar todos os customers que têm establishment_id
+            $customers = \DB::table('customers')
+                ->whereNotNull('establishment_id')
+                ->get();
+                
+            foreach ($customers as $customer) {
+                // Inserir na tabela pivot se não existir
+                \DB::table('customer_establishments')->insertOrIgnore([
+                    'customer_id' => $customer->id,
+                    'establishment_id' => $customer->establishment_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
     }
 
