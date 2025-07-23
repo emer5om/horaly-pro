@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BarChart3, Building, Calendar, CalendarClock, Home, Link as LinkIcon, Scissors, User, Users, CreditCard, TrendingUp, Bell, Crown } from 'lucide-react';
+import { BarChart3, Building, Calendar, CalendarClock, Home, Link as LinkIcon, Scissors, User, Users, CreditCard, TrendingUp, Bell, Crown, MessageCircle } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: (NavItem & { feature?: string })[] = [
@@ -77,7 +77,14 @@ const mainNavItems: (NavItem & { feature?: string })[] = [
     },
 ];
 
-const footerNavItems: NavItem[] = [];
+const footerNavItems: NavItem[] = [
+    {
+        name: 'Suporte',
+        href: 'https://wa.me/5551993823862?text=Olá! Preciso de ajuda com o sistema Horaly.',
+        icon: MessageCircle,
+        external: true,
+    },
+];
 
 interface EstablishmentSidebarProps {
     planFeatures?: string[];
