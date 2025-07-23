@@ -75,16 +75,15 @@ const mainNavItems: (NavItem & { feature?: string })[] = [
         icon: Bell,
         feature: 'notifications',
     },
-];
-
-const footerNavItems: NavItem[] = [
     {
-        name: 'Suporte',
+        title: 'Suporte',
         href: 'https://wa.me/5551993823862?text=Olá! Preciso de ajuda com o sistema Horaly.',
         icon: MessageCircle,
         external: true,
     },
 ];
+
+const footerNavItems: NavItem[] = [];
 
 interface EstablishmentSidebarProps {
     planFeatures?: string[];
@@ -116,7 +115,6 @@ export function EstablishmentSidebar({ planFeatures = [] }: EstablishmentSidebar
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
