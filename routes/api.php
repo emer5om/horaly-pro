@@ -10,6 +10,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Webhooks (sem CSRF protection)
 Route::post('/webhooks/mercadopago', [App\Http\Controllers\SubscriptionController::class, 'mercadopagoWebhook'])->name('api.mercadopago.webhook');
 Route::post('/webhooks/efipay', [App\Http\Controllers\SubscriptionController::class, 'webhook'])->name('api.efipay.webhook');
+Route::post('/webhooks/whatsapp/connection-update', [App\Http\Controllers\WhatsAppController::class, 'connectionUpdate'])->name('api.whatsapp.connection-update');
 
 // Public booking API
 Route::post('/appointments', [App\Http\Controllers\BookingController::class, 'createAppointment'])->name('api.booking.create-appointment');

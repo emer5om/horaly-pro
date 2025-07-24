@@ -38,7 +38,6 @@ Route::post('/api/booking/validate-coupon', [App\Http\Controllers\BookingControl
 
 // WhatsApp Webhook (public route)
 Route::post('/webhooks/whatsapp', [App\Http\Controllers\WhatsAppController::class, 'webhook'])->name('whatsapp.webhook');
-Route::post('/webhooks/whatsapp/connection-update', [App\Http\Controllers\WhatsAppController::class, 'connectionUpdate'])->name('whatsapp.connection-update');
 
 // Webhooks movidos para routes/api.php (sem verificação CSRF)
 
