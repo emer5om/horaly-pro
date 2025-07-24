@@ -283,6 +283,41 @@ class WhatsAppController extends Controller
     }
 
     /**
+     * Handle connection update webhook (dedicated route)
+     */
+    public function connectionUpdate(Request $request)
+    {
+        Log::info('WhatsApp connection update webhook received', $request->all());
+
+        try {
+            $instanceName = $request->input('instance');
+            $data = $request->input('data', $request->all());
+
+            // Find establishment by instance name or ID
+            $establishment = \App\Models\Establishment::where('whatsapp_instance_id', $instanceName)
+                ->orWhere('whatsapp_instance_name', $instanceName)
+                ->first();
+            
+            if (!$establishment) {
+                Log::warning('Connection update webhook received for unknown instance', ['instance' => $instanceName]);
+                return response()->json(['success' => false, 'message' => 'Instance not found'], 404);
+            }
+
+            $this->handleConnectionUpdate($establishment, $data);
+
+            return response()->json(['success' => true]);
+
+        } catch (\Exception $e) {
+            Log::error('Connection update webhook processing failed', [
+                'error' => $e->getMessage(),
+                'data' => $request->all()
+            ]);
+
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
      * Handle connection update webhook
      */
     private function handleConnectionUpdate($establishment, $data)
