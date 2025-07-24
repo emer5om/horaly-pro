@@ -349,7 +349,7 @@ Esperamos vê-lo em breve! 🙏`,
         updateWhatsappStatus('connecting');
 
         try {
-            const response = await fetch('/whatsapp/connect', {
+            const response = await fetch('/establishment/integrations/whatsapp/connect', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
